@@ -1,3 +1,5 @@
+#include <string>
+
 #include <Student.hpp>
 #include <Course.hpp>
 
@@ -9,17 +11,17 @@ Student::Student(std::string sName, unsigned sCode, unsigned sNumOfCourses, std:
 }
 
 void Student::changeStudentName() {
-    std::cout << "\nIngrese el nuevo nombre del alumno: ";
+    std::cout << "\nEnter the new name of the student: ";
     std::getline(std::cin, m_studentName, '\n');
 }
 
 void Student::changeStudentCode() {
-    std::cout << "\nIngrese el nuevo codigo del alumno: ";
+    std::cout << "\nEnter the new code of the student: ";
     std::cin >> m_studentCode;
 }
 
 void Student::changeStudentNumberOfCourses() {
-    std::cout << "\nIngrese el nuevo numero de cursos a llevar: ";
+    std::cout << "\nEnter the new number of courses to take: ";
     std::cin >> m_numberOfCourses;
 }
 
@@ -48,7 +50,7 @@ void Student::addCourse() {
 
 void Student::deleteCourse() {
     std::string deletedCourse;
-    std::cout << "Indique el codigo o nombre del curso que desea eliminar: ";
+    std::cout << "\nEnter the code or course name that you want to delete: ";
     std::getline(std::cin, deletedCourse, '\n');
     
     std::vector<Course>::iterator ptrCourse;
@@ -61,7 +63,7 @@ void Student::deleteCourse() {
 
 void Student::modifyCourse() {
     std::string modifiedCourse;
-    std::cout << "\nIngresa el codigo o nombre del curso que desea eliminar: ";
+    std::cout << "\nEnter the code or course name that you want to modify: ";
     std::getline(std::cin, modifiedCourse, '\n');
 
     std::vector<Course>::iterator ptrCourse; 
@@ -84,4 +86,26 @@ void Student::showStudentCourses() {
         std::cout << "\nGrade: " << (*ptrCourse).getCourseGrade();
         std::cout << "\n\n";
     }
+}
+
+void Student::storeStudentInfo() {
+    std::string outputFile = std::to_string(m_studentCode) + ".txt";
+
+    m_storageStudentInfo.open(outputFile.c_str());
+
+    m_storageStudentInfo << "--------------------\n";
+    m_storageStudentInfo << m_studentName << "\n";
+    m_storageStudentInfo << m_studentCode << "\n";
+
+    std::vector<Course>::iterator ptrCourse;
+    for(ptrCourse = m_coursesRecord.begin(); ptrCourse < m_coursesRecord.end(); ptrCourse++) {
+        m_storageStudentInfo << "\n";
+        m_storageStudentInfo << (*ptrCourse).getCourseName() << "\n";
+        m_storageStudentInfo << (*ptrCourse).getCourseCode() << "\n";
+        m_storageStudentInfo << (*ptrCourse).getCourseSemester() << "\n";
+        m_storageStudentInfo << (*ptrCourse).getCourseGrade() << "\n";
+        m_storageStudentInfo << "\n";
+    }
+
+    m_storageStudentInfo.close();
 }

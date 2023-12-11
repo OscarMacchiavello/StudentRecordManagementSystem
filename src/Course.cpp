@@ -10,22 +10,22 @@ Course::Course(std::string cName, std::string cCode, unsigned cSemester, float c
 }
 
 void Course::changeCourseName() {
-    std::cout << "\nIngrese el nuevo nombre del curso: ";
+    std::cout << "\nEnter the new name of the course: ";
     std::getline(std::cin, m_courseName, '\n');
 }
 
 void Course::changeCourseCode() {
-    std::cout << "\nIngrese el nuevo codigo del curso: ";
+    std::cout << "\nEnter the new code of the course: ";
     std::getline(std::cin, m_courseCode, '\n');
 }
 
 void Course::changeCourseSemester() {
-    std::cout << "\nIngrese el semestre al que pertenece el curso: ";
+    std::cout << "\nEnter the semester to which the course belongs: ";
     std::cin >> m_semester;
 }
 
 void Course::changeCourseGrade() {
-    std::cout << "\nIngrese la nueva nota del curso: ";
+    std::cout << "\nEnter the new grade of the course: ";
     std::cin >> m_grade;
 }
 

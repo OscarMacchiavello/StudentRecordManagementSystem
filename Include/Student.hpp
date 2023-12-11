@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <vector>
+#include <fstream>
 
 #include <Course.hpp>
 
@@ -12,6 +13,8 @@ class Student
         unsigned m_studentCode;
         unsigned m_numberOfCourses;
         std::vector<Course> m_coursesRecord;
+        
+        std::ofstream m_storageStudentInfo;
 
     public:
         Student(std::string = "NoInfo", unsigned = 0, unsigned = 0, std::vector<Course> = {});  
@@ -25,5 +28,7 @@ class Student
         void deleteCourse();
         void modifyCourse();
         void showStudentCourses();
+
+        void storeStudentInfo();
         
 };
